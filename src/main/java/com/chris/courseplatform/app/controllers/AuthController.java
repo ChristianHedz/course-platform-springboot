@@ -1,6 +1,7 @@
 package com.chris.courseplatform.app.controllers;
 
 import com.chris.courseplatform.app.models.Dto.*;
+import com.chris.courseplatform.app.services.AuthenticationService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
