@@ -1,5 +1,6 @@
 package com.chris.courseplatform.app.config;
 
+import com.chris.courseplatform.app.exceptions.ResourceNotFoundException;
 import com.chris.courseplatform.app.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
