@@ -48,6 +48,8 @@ public class HttpSecurityConfig {
                     authorizeRequest.requestMatchers(HttpMethod.POST,"api/v1/login").permitAll();
                     authorizeRequest.requestMatchers(HttpMethod.POST,"api/v1/profile").permitAll();
                     authorizeRequest.requestMatchers(HttpMethod.GET,"api/v1/demo").permitAll();
+                    authorizeRequest.requestMatchers(HttpMethod.POST,"api/v1/course").permitAll();
+                    authorizeRequest.requestMatchers(HttpMethod.PUT,"api/v1/course/{id}").permitAll();
                     authorizeRequest.anyRequest().authenticated();
                 }).build();
     }
