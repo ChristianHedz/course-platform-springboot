@@ -2,6 +2,7 @@ package com.chris.courseplatform.app.controllers;
 
 import com.chris.courseplatform.app.models.Dto.*;
 import com.chris.courseplatform.app.services.AuthenticationService;
+import com.chris.courseplatform.app.services.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     private AuthenticationService authenticationService;
+    private UserService userService;
 
     @Operation(summary = "Register a new user", description = "Register a new user in the platform")
     @ApiResponses(value = {
@@ -77,6 +79,12 @@ public class AuthController {
     public ResponseEntity<UserDTO> findLoggerUser(){
         UserDTO userDTO = authenticationService.findLoggerUser();
         return new ResponseEntity<>(userDTO,HttpStatus.OK);
+    }
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity<UserDTO> getUser(@PathVariable Long id){
+        UserDTO user = userService.getUser(id);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @PreAuthorize("hasRole('ADMIN')")

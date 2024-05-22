@@ -4,6 +4,7 @@ import com.chris.courseplatform.app.exceptions.InvalidPasswordException;
 import com.chris.courseplatform.app.exceptions.ResourceNotFoundException;
 import com.chris.courseplatform.app.mappers.UserMapper;
 import com.chris.courseplatform.app.models.Dto.RegisteredUser;
+import com.chris.courseplatform.app.models.Dto.UserDTO;
 import com.chris.courseplatform.app.models.Role;
 import com.chris.courseplatform.app.models.User;
 import com.chris.courseplatform.app.repositories.RoleRepository;
@@ -42,6 +43,12 @@ public class UserServiceImpl implements UserService{
                 .orElseThrow(() -> new ResourceNotFoundException("role","customer",defaultRole));
         user.setRoles(Collections.singleton(role));
         return userRepository.save(user);
+    }
+
+    public UserDTO getUser(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("user","id",id));
+        return userMapper.userToUserDTO(user);
     }
 
     private void validatePassword(RegisteredUser registeredUser) {
